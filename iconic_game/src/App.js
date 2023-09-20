@@ -1,23 +1,21 @@
-// In your App component or parent component
-import React, { useState } from 'react';
-import './App.css'; 
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Register from "./Components/Auth/Register";
+import PrivateRoute from "./Layout/PrivateRoute";
+import Login from "./components/Auth/Login";
 
-import RegistrationForm from './Components/RegistrationForm';
-import GreenLightRedLight from './Components/GreenLightRedLight';
-import { ChakraProvider } from '@chakra-ui/react';
+// Import your components
 
 function App() {
-  const [gameDifficulty, setGameDifficulty] = useState('');
-
-  const handleStartGame = (difficulty) => {
-    setGameDifficulty(difficulty);
-  };
+  // Replace with your authentication logic (e.g., check if the user is logged in)
 
   return (
-    <ChakraProvider>
-      <RegistrationForm onStartGame={handleStartGame} />
-      {gameDifficulty && <GreenLightRedLight difficulty={gameDifficulty} />}
-      </ChakraProvider>
+    <div>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
+    </div>
   );
 }
 

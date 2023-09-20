@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   Button,
@@ -7,20 +7,20 @@ import {
   Text,
   useColorMode,
   useColorModeValue,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
 function GreenLightRedLight({ difficulty }) {
   const { toggleColorMode } = useColorMode();
-  const borderColor = useColorModeValue("gray.300", "gray.700");
-  const [gameState, setGameState] = useState("idle"); // 'idle', 'playing', 'gameOver', 'youWin'
-  const [boxColor, setBoxColor] = useState("green");
+  const borderColor = useColorModeValue('gray.300', 'gray.700');
+  const [gameState, setGameState] = useState('idle'); // 'idle', 'playing', 'gameOver', 'youWin'
+  const [boxColor, setBoxColor] = useState('green');
   const [score, setScore] = useState(0);
   const [timeLeft, setTimeLeft] = useState(0); // Time in seconds
   const [clickCount, setClickCount] = useState(0); // Number of clicks required
 
-  // Function to generate a random time interval between 1s and 2s
+  // Function to generate a random time interval between 1.5s and 2s
   const getRandomTimeInterval = () => {
-    return 1500 + Math.random() * 500; // Change the time range to 1.5s to 2s
+    return 1500 + Math.random() * 500; // 1.5s to 2s
   };
 
   // Start the game when the button is pressed
@@ -29,24 +29,24 @@ function GreenLightRedLight({ difficulty }) {
     let timeLimit = 0;
     let initialClickCount = 0;
 
-    if (difficulty === "easy") {
+    if (difficulty === 'easy') {
       timeLimit = 40;
       initialClickCount = 10;
-    } else if (difficulty === "medium") {
+    } else if (difficulty === 'medium') {
       timeLimit = 40;
       initialClickCount = 15;
-    } else if (difficulty === "hard") {
+    } else if (difficulty === 'hard') {
       timeLimit = 40;
       initialClickCount = 25;
     }
 
     setTimeLeft(timeLimit);
     setClickCount(initialClickCount);
-    setGameState("playing");
+    setGameState('playing');
 
     // Function to change the box color between green and red with a random interval
     const changeBoxColor = () => {
-      const newColor = boxColor === "green" ? "red" : "green";
+      const newColor = boxColor === 'green' ? 'red' : 'green';
       setBoxColor(newColor);
     };
 
@@ -78,27 +78,27 @@ function GreenLightRedLight({ difficulty }) {
 
   // Function to handle box click
   const handleBoxClick = () => {
-    if (boxColor === "green" && gameState === "playing") {
+    if (boxColor === 'green' && gameState === 'playing') {
       setScore(score + 1);
       setClickCount(clickCount - 1);
 
       // Check if the player has won
       if (clickCount === 1) {
-        setGameState("youWin");
+        setGameState('youWin');
       }
-    } else if (boxColor === "red" && gameState === "playing") {
+    } else if (boxColor === 'red' && gameState === 'playing') {
       endGame();
     }
   };
 
   // Function to end the game
   const endGame = () => {
-    setGameState("gameOver");
+    setGameState('gameOver');
   };
 
   useEffect(() => {
     // Start the game when the game state changes to 'playing'
-    if (gameState === "playing") {
+    if (gameState === 'playing') {
       startGame();
     }
   }, [gameState]);
@@ -107,14 +107,15 @@ function GreenLightRedLight({ difficulty }) {
     <Center h="100vh">
       <Box
         p={4}
-        bg={useColorModeValue("gray.200", "gray.800")}
+        bg={useColorModeValue('gray.200', 'gray.800')}
         borderRadius="md"
         boxShadow="md"
         borderWidth="1px"
         borderColor={borderColor}
         maxW="400px"
         w="100%"
-        textAlign="center">
+        textAlign="center"
+      >
         {/* Display the box with dynamic color */}
         <Box
           className={`box ${boxColor}`}
@@ -124,18 +125,19 @@ function GreenLightRedLight({ difficulty }) {
           borderRadius="full"
           cursor="pointer"
           transition="background-color 0.3s ease-in-out"
-          _hover={{ bgColor: "red" }}></Box>
+          _hover={{ bgColor: 'red' }}
+        ></Box>
 
         {/* Display game status */}
         <Text mt={4} fontSize="xl">
-          {gameState === "idle" && (
+          {gameState === 'idle' && (
             <Button onClick={startGame} colorScheme="teal">
               Start Game
             </Button>
           )}
-          {gameState === "youWin" && <Text color="green.500">You win!</Text>}
-          {gameState === "gameOver" && <Text color="red.500">Game Over!</Text>}
-          {gameState === "playing" && (
+          {gameState === 'youWin' && <Text color="green.500">You win!</Text>}
+          {gameState === 'gameOver' && <Text color="red.500">Game Over!</Text>}
+          {gameState === 'playing' && (
             <Text>
               Time left: {timeLeft} seconds
               <br />
@@ -146,7 +148,8 @@ function GreenLightRedLight({ difficulty }) {
         <Button
           mt={4}
           onClick={toggleColorMode}
-          colorScheme={useColorModeValue("teal", "gray")}>
+          colorScheme={useColorModeValue('teal', 'gray')}
+        >
           Toggle Dark Mode
         </Button>
       </Box>
