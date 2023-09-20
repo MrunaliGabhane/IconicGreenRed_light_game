@@ -18,7 +18,7 @@ Bonus challenges such as a leaderboard and a countdown timer.
 To get started with the game, follow these steps:
 
 ### 1. Clone the repository to your local machine:
-#### git clone https://github.com/your-username/your-game-repo.git
+#### git clone https://github.com/MrunaliGabhane/IconicGreenRed_light_game.git
 
 ### 2. Navigate to the project directory:
 #### cd iconic_game
