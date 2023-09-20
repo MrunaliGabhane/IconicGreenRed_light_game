@@ -1,9 +1,14 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
-import Footer from "./Layout/Footer";
-import Header from "./Layout/Header";
-import PrivateRoute from "./Layout/PrivateRoute";
-import Login from "./components/Auth/Login";
+
+import Header from "./Components/Layout/Header";
+import Login from "./Components/Auth/Login";
+import Register from "./Components/Auth/Register";
+import PrivateRoute from "./Components/Layout/PrivateRoute";
+import Leaderboard from "./Components/Game/Leaderboard";
+import Footer from "./Components/Layout/Footer";
+import Game from "./Components/Game/GreenLightRedLight";
+import { Route, Routes } from "react-router-dom";
+
 // Import your components
 
 function App() {
@@ -16,6 +21,22 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         {/* Use PrivateRoute to protect routes that require authentication */}
+        <Route
+          path="/"
+          element={
+            <PrivateRoute>
+              <Game />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/leaderboard"
+          element={
+            <PrivateRoute>
+              <Leaderboard />
+            </PrivateRoute>
+          }
+        />
       </Routes>
       <Footer />
     </div>

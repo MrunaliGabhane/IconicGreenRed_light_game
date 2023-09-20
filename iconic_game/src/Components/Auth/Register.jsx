@@ -17,8 +17,9 @@ import {
 import { Link, useParams } from "react-router-dom";
 import axios from "axios"; // Import Axios for making API requests
 import "./Login.css"; // Add your custom CSS for styling and animations
+import Swal from "sweetalert2";
 
-function Register() {
+const Register = () => {
   const history = useParams();
   const [formData, setFormData] = useState({
     name: "",
@@ -39,15 +40,30 @@ function Register() {
       setLoading(true);
       setError("");
 
-      axios.post("http://localhost:5000/api/auth/register", formData);
-
-      // Successful registration logic
-      // localStorage.setItem('accessToken', response.data.accessToken);
+      axios.post(
+        "https://iconic-r0xu.onrender.com/api/auth/register",
+        formData
+      );
+      Swal.fire({
+        icon: 'success',
+        title: 'Registration Successful',
+        text: 'You have successfully registered!',
+        confirmButtonText: 'OK',
+      }).then(() => {
+        // Redirect to /login
+        window.location.href = '/login';
+      });
 
       setLoading(false);
+      
     } catch (err) {
       setLoading(false);
       setError("An error occurred. Please try again.");
+      Swal.fire({
+        icon: "error",
+        title: "Registration Error",
+        text: "An error occurred while registering. Please try again.",
+      });
     }
   };
   // console.log(formData)
@@ -88,6 +104,13 @@ function Register() {
             />
           </FormControl>
           <FormControl isRequired>
+            <FormLabel>Number</FormLabel>
+            <Input  type="tel"
+              name="mobile"
+              value={formData.mobile}
+              onChange={handleChange}placeholder="Enter you Number" size="lg" />
+          </FormControl>
+          <FormControl isRequired>
             <FormLabel>Password</FormLabel>
             <Input
               type="password"
@@ -124,6 +147,6 @@ function Register() {
       </VStack>
     </Center>
   );
-}
+};
 
 export default Register;

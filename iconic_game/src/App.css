@@ -36,3 +36,21 @@
     transform: rotate(360deg);
   }
 }
+/* App.css */
+
+/* Animate the landing page on load */
+.landing-page {
+  animation: fadeInUp 1s ease-in-out;
+}
+
+@keyframes fadeInUp {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+

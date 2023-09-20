@@ -13,12 +13,14 @@ import {
   Alert,
   AlertIcon,
   Spinner,
+  Select,
 } from "@chakra-ui/react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios"; // Import Axios for making API requests
 import "./Login.css"; // Add your custom CSS for styling and animations
 import { useNavigate } from "react-router-dom";
-function Login() {
+
+const Login = () => {
   const navigate = useNavigate();
   const history = useParams();
   const [formData, setFormData] = useState({
@@ -31,7 +33,18 @@ function Login() {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  const validateForm = () => {
+    const errors = {};
+    if (!isValidMobile(formData.mobile)) {
+      errors.mobile = "Invalid mobile number format";
+    }
 
+    return errors;
+  };
+  const isValidMobile = (mobile) => {
+    const mobileRegex = /^\d{10}$/;
+    return mobileRegex.test(mobile);
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -40,7 +53,7 @@ function Login() {
       setError("");
 
       const response = await axios.post(
-        "http://localhost:5000/api/auth/login",
+        "https://iconic-r0xu.onrender.com/api/auth/login",
         formData
       );
 
@@ -80,6 +93,7 @@ function Login() {
               onChange={handleChange}
               placeholder="Enter your email"
               size="lg"
+              style={{ color: "black" }}
             />
           </FormControl>
           <FormControl isRequired>
@@ -93,6 +107,7 @@ function Login() {
               size="lg"
             />
           </FormControl>
+         
           {error && (
             <Alert status="error" mt={4} borderRadius="md">
               <AlertIcon />
@@ -119,6 +134,5 @@ function Login() {
       </VStack>
     </Center>
   );
-}
-
+};
 export default Login;
