@@ -8,6 +8,7 @@ function Header() {
     // Check if the accessToken is present in local storage
     const accessToken = localStorage.getItem("accessToken");
     setIsLoggedIn(accessToken !== null);
+      
   }, []);
 
   const handleLogout = () => {
@@ -17,6 +18,7 @@ function Header() {
     setIsLoggedIn(false);
     // Optionally, you can redirect to the login page or perform any other actions
     window.location.href = "/login";
+
   };
 
   return (

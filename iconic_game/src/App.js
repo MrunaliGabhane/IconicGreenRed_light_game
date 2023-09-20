@@ -6,8 +6,9 @@ import Register from "./Components/Auth/Register";
 import PrivateRoute from "./Components/Layout/PrivateRoute";
 import Leaderboard from "./Components/Game/Leaderboard";
 import Footer from "./Components/Layout/Footer";
-import Game from "./Components/Game/GreenLightRedLight";
+
 import { Route, Routes } from "react-router-dom";
+import GreenLightRedLight from "./Components/Game/GreenLightRedLight";
 
 // Import your components
 
@@ -25,7 +26,7 @@ function App() {
           path="/"
           element={
             <PrivateRoute>
-              <Game />
+              <GreenLightRedLight />
             </PrivateRoute>
           }
         />

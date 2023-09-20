@@ -11,7 +11,7 @@ import {
 import axios from "axios";
 import Swal from "sweetalert2";
 
-function Game() {
+function GreenLightRedLight() {
   const [gameStatus, setGameStatus] = useState("idle");
   const [score, setScore] = useState(0);
   const [timeLeft, setTimeLeft] = useState(0);
@@ -176,4 +176,4 @@ function Game() {
   );
 }
 
-export default Game;
+export default GreenLightRedLight;

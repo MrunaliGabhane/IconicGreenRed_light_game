@@ -62,7 +62,6 @@ const Login = () => {
       // console.log(formData.email)
       localStorage.setItem("user", formData.email);
       setLoading(false);
-      ///reload page
       navigate("/");
     } catch (err) {
       setLoading(false);
@@ -107,7 +106,7 @@ const Login = () => {
               size="lg"
             />
           </FormControl>
-         
+
           {error && (
             <Alert status="error" mt={4} borderRadius="md">
               <AlertIcon />
